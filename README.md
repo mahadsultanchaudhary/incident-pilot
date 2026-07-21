@@ -382,6 +382,18 @@ Human decisions guided the architecture, engineering trade-offs, feature priorit
 Codex served as an implementation accelerator rather than replacing software engineering decisions.
 
 ---
+---
+
+## 🚀 Future Roadmap & Planned Enhancements
+
+While IncidentPilot currently includes a integrated microservices suite for live telemetry and fault injection, future iterations will expand support for arbitrary production infrastructure:
+
+* **📁 Custom Log Ingestion (Drag & Drop):** Support manual upload of `.log`, `.json`, and `.txt` files directly in the dashboard for instant forensic analysis without requiring backend telemetry connections.
+* **🔌 Multi-Format Schema Parsers:** Native adapters for popular logging ecosystems, including AWS CloudWatch, Datadog, Syslog, and Kubernetes `kubectl` streams.
+* **🔔 Real-Time Incident Alerts:** Webhook integrations to automatically publish AI root-cause summaries and postmortems directly to Slack, PagerDuty, and Microsoft Teams.
+* **🛠️ Automated Pull Request Fixes:** Empower AI agents to automatically branch, patch code, and generate GitHub PRs with suggested fixes.
+* **📊 Multi-Tenant Collaboration:** Team workspaces with role-based access control (RBAC) for SRE teams conducting joint postmortems.
+
 
 # License
 
