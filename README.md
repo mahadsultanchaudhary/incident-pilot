@@ -1,3 +1,35 @@
+- [IncidentPilot](#incidentpilot)
+- [Dashboard](#dashboard)
+- [The Problem](#the-problem)
+- [Features](#features)
+  - [Deterministic Investigation](#deterministic-investigation)
+  - [AI Investigation](#ai-investigation)
+- [Demo Architecture](#demo-architecture)
+- [Project Components](#project-components)
+  - [1. Faulty Commerce Backend](#1-faulty-commerce-backend)
+    - [Commerce Modules](#commerce-modules)
+    - [Seeded Production Bugs](#seeded-production-bugs)
+  - [2. IncidentPilot Dashboard](#2-incidentpilot-dashboard)
+- [AI Investigation](#ai-investigation-1)
+- [Demo Workflow](#demo-workflow)
+- [Project Architecture](#project-architecture)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+  - [AI](#ai)
+- [Project Structure](#project-structure)
+- [Running the Project](#running-the-project)
+  - [Backend](#backend-1)
+  - [Frontend](#frontend-1)
+- [Environment Variables](#environment-variables)
+  - [Fireworks AI](#fireworks-ai)
+  - [OpenAI](#openai)
+- [Working Without AI](#working-without-ai)
+- [Building with Codex \& GPT-5.6](#building-with-codex--gpt-56)
+  - [GPT-5.6](#gpt-56)
+  - [Codex](#codex)
+  - [🚀 Future Roadmap \& Planned Enhancements](#-future-roadmap--planned-enhancements)
+- [License](#license)
+
 ## 🏆 Quick Start for Judges
 
 The fastest way to evaluate **IncidentPilot** is with **GitHub Codespaces**—no local setup required.
@@ -415,7 +447,7 @@ Codex served as an implementation accelerator rather than replacing software eng
 While IncidentPilot currently includes a integrated microservices suite for live telemetry and fault injection, future iterations will expand support for arbitrary production infrastructure:
 
 * **📁 Custom Log Ingestion (Drag & Drop):** Support manual upload of `.log`, `.json`, and `.txt` files directly in the dashboard for instant forensic analysis without requiring backend telemetry connections.
-* **🔌 Multi-Format Schema Parsers:** Native adapters for popular logging ecosystems, including AWS CloudWatch, Datadog, Syslog, and Kubernetes `kubectl` streams.
+* **🔌 Multi-Format Schema Parsers:** Native adapters for popular logging ecosystems, including  Datadog, Syslog, and Kubernetes `kubectl` streams.
 * **🔔 Real-Time Incident Alerts:** Webhook integrations to automatically publish AI root-cause summaries and postmortems directly to Slack, PagerDuty, and Microsoft Teams.
 * **🛠️ Automated Pull Request Fixes:** Empower AI agents to automatically branch, patch code, and generate GitHub PRs with suggested fixes.
 * **📊 Multi-Tenant Collaboration:** Team workspaces with role-based access control (RBAC) for SRE teams conducting joint postmortems.
