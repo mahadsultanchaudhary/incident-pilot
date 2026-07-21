@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+sqlmodel
+openai
+python-dotenv
+python-multipart
+httpx
+aiofiles
+python-json-logger

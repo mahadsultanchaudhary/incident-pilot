@@ -1,0 +1,10 @@
+import { Filter, Search } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { EmptyState, LoadingState } from '../components/LoadingState'
+import { StatusBadge } from '../components/StatusBadge'
+import { useAsync } from '../hooks/useAsync'
+import { incidentService } from '../services/incidentService'
+import { relativeTime } from '../utils/format'
+import { useState } from 'react'
+
+export function IncidentsPage() { const { data, loading, error, reload } = useAsync(incidentService.list); const [query, setQuery] = useState(''); if (loading) return <LoadingState label="Loading incident queue" />; if (!data) return <div className="api-error"><strong>Incident API unavailable</strong><p>{error}</p><button className="button primary" onClick={() => void reload()}>Retry</button></div>; const incidents = data.filter((item) => `${item.title} ${item.service}`.toLowerCase().includes(query.toLowerCase())); return <div><div className="page-heading"><div><p>Incident management</p><h2>Investigations requiring attention</h2></div><button className="button secondary"><Filter size={16} />Filters</button></div><div className="table-toolbar"><label className="search-field"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search incident title or service" /></label><span>{incidents.length} incidents</span></div><div className="table-wrap"><table><thead><tr><th>Incident</th><th>Severity</th><th>Status</th><th>Last seen</th><th>Events</th><th>Confidence</th></tr></thead><tbody>{incidents.map((item) => <tr key={item.id}><td><Link className="table-title" to={`/incidents/${item.id}`}>{item.title}<small>{item.service}</small></Link></td><td><StatusBadge value={item.severity} /></td><td><StatusBadge value={item.status} /></td><td>{relativeTime(item.last_seen)}</td><td>{item.occurrence_count}</td><td><div className="inline-confidence"><i style={{ width: `${item.root_cause_confidence * 100}%` }} />{Math.round(item.root_cause_confidence * 100)}%</div></td></tr>)}</tbody></table>{!incidents.length && <EmptyState label="No incidents match the current filters." />}</div></div> }

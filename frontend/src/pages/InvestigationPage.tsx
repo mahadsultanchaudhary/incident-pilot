@@ -1,0 +1,11 @@
+import { Bot, Sparkles } from 'lucide-react'
+import { useState } from 'react'
+import { ConfidenceIndicator } from '../components/ConfidenceIndicator'
+import { LoadingState } from '../components/LoadingState'
+import { Panel } from '../components/Panel'
+import { Timeline } from '../components/Timeline'
+import { useAsync } from '../hooks/useAsync'
+import { incidentService } from '../services/incidentService'
+import type { Analysis } from '../types'
+
+export function InvestigationPage() { const { data, loading } = useAsync(incidentService.list); const [selected, setSelected] = useState<number>(); const [analysis, setAnalysis] = useState<Analysis | null>(null); if (loading) return <LoadingState label="Loading investigation queue" />; const current = data?.find((item) => item.id === selected) || data?.[0]; const run = async () => { if (current) setAnalysis(await incidentService.analyze(current.id)) }; return <div className="investigation-page"><div className="page-heading"><div><p>Guided root-cause analysis</p><h2>AI Investigation</h2></div></div><div className="investigation-grid"><Panel title="Incident context"><div className="incident-picker">{data?.map((incident) => <button key={incident.id} className={current?.id === incident.id ? 'selected' : ''} onClick={() => { setSelected(incident.id); setAnalysis(null) }}><strong>{incident.title}</strong><span>{incident.service}</span></button>)}</div></Panel><div className="investigation-main"><Panel title="Evidence-driven analysis" action={<button className="button primary" onClick={() => void run()}><Sparkles size={16} />Analyze incident</button>}>{analysis ? <div className="analysis-result"><p className="executive-summary">{analysis.executive_summary}</p><div className="analysis-columns"><div><h3>Root cause assessment</h3><p>{analysis.root_cause}</p><h3>Recommended next steps</h3><ul>{analysis.next_steps.map((step) => <li key={step}>{step}</li>)}</ul></div><ConfidenceIndicator value={analysis.confidence} /></div><h3>Observed sequence</h3><Timeline items={analysis.timeline} /></div> : <div className="action-empty large"><Bot size={28} /><strong>Choose an incident and run an analysis</strong><span>Only structured incident evidence is included in the request.</span></div>}</Panel></div></div></div> }
