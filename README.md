@@ -1,10 +1,37 @@
+## 🏆 Quick Start for Judges
+
+The fastest way to evaluate **IncidentPilot** is with **GitHub Codespaces**—no local setup required.
+
+1. Click **Code** → **Codespaces** → **Create codespace on main**.
+2. Open two terminals.
+
+**Terminal 1 – Backend**
+
+```bash
+cd backend
+source venv/bin/activate
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+**Terminal 2 – Frontend**
+
+```bash
+cd frontend
+npm run dev -- --host 0.0.0.0
+```
+
+Once both services are running, open the forwarded Vite port (typically **5173**) to access the IncidentPilot dashboard.
+
+
+
+
 # IncidentPilot
 
 > **AI-Powered Incident Investigation & Root Cause Analysis**
 
 IncidentPilot is an AI-assisted incident response platform built for software engineers, DevOps teams, and Site Reliability Engineers (SREs).
 
-Instead of manually searching through thousands of log lines after a production failure, IncidentPilot reconstructs the incident timeline, correlates evidence, identifies affected services, and explains the most likely root cause using an OpenAI-compatible Large Language Model.
+Instead of manually searching through thousands of log lines after a production failure, IncidentPilot reconstructs the incident timeline, correlates evidence, identifies affected services, and explains the most likely root cause using an  Large Language Model.
 
 For demonstration purposes, the repository includes a deliberately faulty FastAPI e-commerce backend capable of generating realistic production incidents.
 
@@ -57,7 +84,7 @@ Works without AI.
 
 ## AI Investigation
 
-Uses an OpenAI-compatible model **only after deterministic analysis**.
+Uses an   -LLM model **only after deterministic analysis**.
 
 The AI generates:
 
@@ -99,7 +126,7 @@ Rather than uploading an entire log file, IncidentPilot extracts only the releva
               ┌───────────────────────┴───────────────────────┐
               │                                               │
               ▼                                               ▼
-     Deterministic Dashboard                    OpenAI-Compatible LLM
+     Deterministic Dashboard                                 LLM
               │                                               │
               └───────────────────────┬───────────────────────┘
                                       ▼
@@ -181,7 +208,7 @@ Dashboard includes:
 
 ![AI Investigation](assets/ai-investigation.png)
 
-Selecting **Analyze Incident** sends only the structured evidence surrounding the incident to an OpenAI-compatible model.
+Selecting **Analyze Incident** sends only the structured evidence surrounding the incident to an Cloud Ai model.
 
 The AI produces:
 
@@ -234,8 +261,6 @@ This approach minimizes token usage while improving explanation quality.
 ## AI
 
 Uses the official OpenAI SDK.
-
-Supports any OpenAI-compatible provider.
 
 Examples:
 
@@ -382,6 +407,7 @@ Human decisions guided the architecture, engineering trade-offs, feature priorit
 Codex served as an implementation accelerator rather than replacing software engineering decisions.
 
 ---
+
 ---
 
 ## 🚀 Future Roadmap & Planned Enhancements
@@ -397,8 +423,5 @@ While IncidentPilot currently includes a integrated microservices suite for live
 
 # License
 
-This project is licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. You may obtain a copy of the License at:
+This project is licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. 
 
-http://apache.org
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
