@@ -1,0 +1,16 @@
+{
+  "name": "IncidentPilot Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "forwardPorts": [8000, 5173],
+  "portsAttributes": {
+    "8000": {
+      "label": "FastAPI Backend",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "React Dashboard",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "postCreateCommand": "cd backend && python3 -m venv venv && ./venv/bin/pip install -r requirements.txt && cd ../frontend && npm install"
+}
